@@ -1,0 +1,16 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+    <div class="container">
+
+      <form class="form-movie" method="POST" action="/">
+        <h2 class="form-movie-heading">Please fill up</h2>
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.movie_id) }}
+        {{ wtf.form_field(form.movie_tags) }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">start</button>
+      </form>
+
+    </div> <!-- /container -->
+{% endblock %}

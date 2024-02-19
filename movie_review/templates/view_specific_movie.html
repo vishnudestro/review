@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Demo</title>
+</head>
+    <body>
+        {% block content%}
+            <div>
+                <ul>
+                    <li>
+                    <h2>{{ data.title}}</h2>
+                    <img src="https://image.tmdb.org/t/p/w185/{{ data.poster_path }}"/> 
+                    <p><b>Language:</b> {{ data.language }}</p>
+                    <p><b>Runtime:</b> {{ data.runtime }}</p>
+                    <p><b>Genres:</b>{% for eachg in data.genres %} {{ eachg }} {%endfor%}</p>
+                    <p><b>Overview:</b> {{ data.overview }}</p>
+                    <a href="{{ data.homepage }}">Official page</a>
+                    {% if data.hash_tags != None %}
+                    <p><b>Hashtag collection status:</b> {{data.status}}</p>
+                        <b>Logs</b>
+                        {% for each_logs in data.logs %}
+                            <p> {{each_logs}} </p>
+                        {%endfor%}
+                        <b>Hash Tags:</b>
+                        <p>{% for each_hash in data.hash_tags %}{% for each in each_hash%} {{each}}{%endfor%} </p>
+                        {%endfor%}
+                    {% endif %}
+                    </li>             
+                </ul> 
+            </div>
+        {% endblock %}
+    </body>
+</html>

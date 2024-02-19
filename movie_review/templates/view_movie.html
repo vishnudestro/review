@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Demo</title>
+</head>
+<body>
+    <ul>
+        {% for each in data %}
+            {% for each_data in data[each] %}
+                <li>
+                <h1>{{ each_data['original_title']}}</h1> 
+                <img src="https://image.tmdb.org/t/p/w185/{{ each_data['poster_path'] }}"/>
+                <a href="http://localhost:4000/admin/movies/{{ each_data['movie_id'] }}">View</a>
+                </li>             
+            {% endfor %}
+        {% endfor %}
+    </ul>
+    {% for page in range(1, pages+1) %}
+    <span>
+        <a href="http://localhost:4000/admin/movies?page={{page}}">{{ page }}</a>
+    </span>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,10 @@
+<h1>Real Movie Review</h1>
+{% if current_user.is_authenticated %}
+  <h1>Hi, {{ current_user.email }}</h1>
+{% else %}
+  <a href="{{ url_for(user.login) }}">why aren't you logged in?</a>
+{% endif %}
+<ul>
+  <li><a href='movies'>Movies</a></li>
+  <li><a href='logout'>Logout</a></li>
+</ul>

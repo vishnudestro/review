@@ -1,0 +1,43 @@
+{% extends "view_specific_movie.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+    
+    {%if data.active == false %}
+        {%if data.status == 'stopped' %}
+        <div>
+            {{ super() }}
+            <form action="/admin/movies/{{ data.movie_id }}">
+                <input type="submit" value="relaunch" name="m_status">
+            </form>
+        </div>
+        <div>
+            <form method="POST" action="/admin/movies/{{ data.movie_id }}">
+                {{ form.hidden_tag() }}
+                {{ wtf.form_field(form.hash_tag) }}
+                <button type="submit">start</button>
+            </form>
+        </div>
+        
+        {% else %}
+            {{ super() }}
+            <div>
+                <form method="POST" action="/admin/movies/{{ data.movie_id }}">
+                    {{ form.hidden_tag() }}
+                    {{ wtf.form_field(form.hash_tag) }}
+                    <button type="submit">start</button>
+                </form>
+            </div>
+        {% endif %}
+    
+    {% elif data.active == true %}
+        {{ super() }}
+        <form action="/admin/movies/{{ data.movie_id }}">
+            <input type="submit" value="stop" name="m_status">
+        </form>
+    
+    {% else %}
+        {{ super() }} 
+    
+    {% endif %}
+
+{% endblock %}  
